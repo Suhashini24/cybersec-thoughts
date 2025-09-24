@@ -13,5 +13,5 @@ o	Access control of who can access the servers (physically) and who can configur
 -	The client (i.e. you and I) will own:
 o	The protection of the application and environment created on the virtualized environment run on top of the hypervisors. 
 
-So what does “The protection of the application and environment created on the virtualized environment run on top of the hypervisors” mean?
+## So what does “The protection of the application and environment created on the virtualized environment run on top of the hypervisors” mean?
 

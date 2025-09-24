@@ -17,3 +17,5 @@ So, what does “**_The protection of the application and environment created on
 
 I will explain my view on how a system must generally be designed, irrespective of data criticality. Then I will suggest further controls for critical system or regulated systems.
 
+# Version Control
+24/09/2025 - Initial draft

@@ -19,18 +19,18 @@ I will explain my view on how a system must generally be designed, irrespective 
 
 ## The general Don’t-you-think-you-can-ignore-because-it’s-a-simple-system practices
 ### 1.	Network segmentation
-•	Yes – even if your system is only accessible internally, ensure it is, logically segmented, especially from more critical systems. The segmentation can be done via firewalls (L3&L4 in the OSI model), access control lists, even via VLANs (L2 in the OSI model). In the cloud, you could do it via network security groups.
+* Yes – even if your system is only accessible internally, ensure it is, logically segmented, especially from more critical systems. The segmentation can be done via firewalls (L3&L4 in the OSI model), access control lists, even via VLANs (L2 in the OSI model). In the cloud, you could do it via network security groups.
  
-•	In this high-level diagram, I have used a firewall as a means to act as the boundary patrol for incoming and outgoing traffic between the 3 zones: DMZ, Internal and Critical apps.
-•	Organizations can have any number of zones, depending on business criticality, regulations and compliance. The public cloud itself could be considered a separate zone (with a different risk level) in the case of hybrid infrastructure. 
+* In this high-level diagram, I have used a firewall as a means to act as the boundary patrol for incoming and outgoing traffic between the 3 zones: DMZ, Internal and Critical apps.
+* Organizations can have any number of zones, depending on business criticality, regulations and compliance. The public cloud itself could be considered a separate zone (with a different risk level) in the case of hybrid infrastructure. 
 
-![Network Segmentation](images/defense in depth2.jpg)
+![Network Segmentation](images/defense%20in%20depth2.jpg)
 
 ### 2.	Identity and access management
-•	Every user and device must authenticate themselves when attempting to access a system. This could be
-i.	 via manual username/password input or Single Sign On (for users).
-ii.	Service accounts or similar (for devices)
-•	Every account must follow principle of least privilege, only being granted access to permissions and resources that are needed (rather than everything or every possible combination – because it will be ‘easier’ to work so)
+* Every user and device must authenticate themselves when attempting to access a system. This could be
+*  via manual username/password input or Single Sign On (for users).
+*   Service accounts or similar (for devices)
+* Every account must follow principle of least privilege, only being granted access to permissions and resources that are needed (rather than everything or every possible combination – because it will be ‘easier’ to work so)
 i.	Why is this the case? In case your account gets compromised, if you had the “nice to have” configuration in place, you will give the malicious actor a free pass into all possible combinations of access to further compromise other systems.
 •	This will result in the requirement to have a centralized register to track all accounts and permissions (this is where Active Directory comes into play). 
 i.	This centralized register will therefore become the “crown jewel” of an enterprise. If this gets compromised, a malicious actor will have full power over the whole organization.
@@ -47,14 +47,14 @@ o	Using a jump host / bastion to access the endpoint server
 If you do have sufficient budget, instead of a manual bastion host, you could leverage PAM (Privilege Access Management) service, which will do all of the above (except MFA – which ideally must be controlled by the Identity access server.
 BUT – the PAM must be configured correctly so that it is worth for the money spent!
 
- ![IAM diagram](images/defense in depth3.jpg)
+ ![IAM diagram](images/defense%20in%20depth3.jpg)
  
 ### 3.	Auditing and monitoring
 •	It is always recommended to monitor logs from the perimeter, different trust boundaries and activity within critical assets to ensure that any attempt to compromise the organization is either spotted before completion. Logs also help threat hunting to be conducted.
 
 •	The logging server / SIEM must be segregated from live environment. Some companies hand over the monitoring to third party MSSP (Manage security service providers), whose SOC continually monitors the infrastructure per signed agreement.
 
- ![SOC segregation diagram](images/defense in depth4.jpg)
+ ![SOC segregation diagram](images/defense%20in%20depth4.jpg)
  
 ### 4.	DevSecOps
 •	Given that SDLC is now agile, the overall speed of delivery has increased as the pipeline is more flexible and adaptable to changing requirements. Plus, infrastructure as a code has been the way of working lately where, not only an application’s code, but the whole infrastructure (firewalls, access lists, WAF, security controls etc) are coded and deployed. This enables the ease of creating templates (with baseline security in place).

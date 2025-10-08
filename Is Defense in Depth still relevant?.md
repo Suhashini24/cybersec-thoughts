@@ -39,13 +39,13 @@ i.	This centralized register will therefore become the “crown jewel” of an e
 #### Privilege Access Management
 •	Accounts with elevated access (i.e. administrators or other roles that have similar or higher privileges) need to be protected more than other “user” accounts because a compromised administrator account can cause grave damage than a normal user account.
 •	Some controls that, at minimum, must be in place, are:
-o	Multi Factor Authentication – to further confirm that the admin is really who he/she claims to be.
-o	Auditing – to monitor and review what actions are done with the privileged access
-o	Using a jump host / bastion to access the endpoint server
-	The bastion will be in a segregated location, with tight <preferably host to host firewalls rules in place>
-	The bastion host must be patched and use a golden image at minimum CIS benchmarked)
+1. Multi Factor Authentication – to further confirm that the admin is really who he/she claims to be.
+2. Auditing – to monitor and review what actions are done with the privileged access
+3. Using a jump host / bastion to access the endpoint server
+   i. The bastion will be in a segregated location, with tight <preferably host to host firewalls rules in place>
+   ii. The bastion host must be patched and use a golden image at minimum CIS benchmarked)
 If you do have sufficient budget, instead of a manual bastion host, you could leverage PAM (Privilege Access Management) service, which will do all of the above (except MFA – which ideally must be controlled by the Identity access server.
-BUT – the PAM must be configured correctly so that it is worth for the money spent!
+**_BUT – the PAM must be configured correctly so that it is worth for the money spent!**_
 
  ![IAM diagram](images/defense%20in%20depth3.jpg)
  
@@ -61,28 +61,26 @@ BUT – the PAM must be configured correctly so that it is worth for the money s
 •	The problem with code is that, developers may not use the “secure” way (eg: old binaries, bad coding practices) to ensure deadlines are met.
 •	To ensure that developers do the right thing from the inception (reducing the need to redo everything before of ‘obvious critical issues’ that were spotted during a pentest conducted for go-live), it is always recommended to integrate security from the design phase (i.e. shift left).
 •	Some controls that can be in place are:
-i.	Security plugins in the IDE – spotting errors as developers type in their code. Lately, copilot for Git does the same.
-ii.	SCA scans to be run during code design phase. 
-iii.	SAST scans before pushing code to the main branch
-iv.	DAST (includes pen testing) prior to pushing code to production.
+1. Security plugins in the IDE – spotting errors as developers type in their code. Lately, copilot for Git does the same.
+2. SCA scans to be run during code design phase.
+3. SAST scans before pushing code to the main branch
+4. DAST (includes pen testing) prior to pushing code to production.
 •	Outside the pipeline, Developers themselves need to have controlled access
-i.	Access to the repositories must be opened internally
-1.	If they are working from home, access preferably must be over VPN, unless services such as Intune, conditional access (risk-based access) are configured.
-ii.	Junior developers, especially interns, ideally must not be assigned to roles where they can push code to the main/production branches. 
-1.	i.e. proper role-based access control must be in place
-iii.	Changes ideally must be peer-reviewed prior to pushing to the main branch.
-iv.	Issues highlighted by the security tooling must be remediated asap, unless they are false positives. In case they are the latter or are a “low priority” proper justification must be given and recoded for transparency and auditing purposes. If any remediation needs more time, and may be only resolved post go-live, a proper risk tracking must be in place, with the plan and tentative deadline agreed upon (as the risk is active until remediation).
+1. Access to the repositories must be opened internally
+1.	 If they are working from home, access preferably must be over VPN, unless services such as Intune, conditional access (risk-based access) are configured.
+2. Junior developers, especially interns, ideally must not be assigned to roles where they can push code to the main/production branches. i.e. proper role-based access control must be in place
+3. Changes ideally must be peer-reviewed prior to pushing to the main branch.
+4. Issues highlighted by the security tooling must be remediated asap, unless they are false positives. In case they are the latter or are a “low priority” proper justification must be given and recoded for transparency and auditing purposes. If any remediation needs more time, and may be only resolved post go-live, a proper risk tracking must be in place, with the plan and tentative deadline agreed upon (as the risk is active until remediation).
 
 ### 5.	Third party / SAAS integration
 •	Third party tooling can be any service that your organization leverages that is not in-house built – this could be the Atlassian stack, snowflake, github cloud, included security services such as qualys, cloudflare etc.
 •	Always,
-i.	Understand how your “tenant” is segregated from other clients, especially since your competitors could also be using the same service
-ii.	Understand the service provider’s incident response process
-iii.	Understand what controls you, as their client can configure and what controls they have already in place (especially if you are to push sensitive data into their cloud, and eventually their datacenters)
-1.	Please note – sometimes such services run on top of the public cloud.
-iv.	Configure the relevant security controls (IAM, Auditing – where possible, principle of least privilege, service access internally rather than over the internet, etc). Do your part correctly as this too is a “shared responsibility model”.
-v.	If you are a regulated entity, understand if the overarching regulations allow SaaS integrations and follow the guidelines set by the regulators. 
-vi.	Understand what would happen to your data once you no longer use their service.
+1. Understand how your “tenant” is segregated from other clients, especially since your competitors could also be using the same service
+2. Understand the service provider’s incident response process
+3. Understand what controls you, as their client can configure and what controls they have already in place (especially if you are to push sensitive data into their cloud, and eventually their datacenters). **_Please note – sometimes such services run on top of the public cloud.**_
+4. Configure the relevant security controls (IAM, Auditing – where possible, principle of least privilege, service access internally rather than over the internet, etc). Do your part correctly as this too is a “shared responsibility model”.
+5. If you are a regulated entity, understand if the overarching regulations allow SaaS integrations and follow the guidelines set by the regulators.
+6. Understand what would happen to your data once you no longer use their service.
 
 These are a very high level (overly summarized) set of controls that, at the very minimum must be considered. I will be discussing them in detail in future chapters
 

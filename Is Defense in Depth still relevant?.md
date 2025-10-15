@@ -82,6 +82,11 @@ If you do have sufficient budget, instead of a manual bastion host, you could le
 5. If you are a regulated entity, understand if the overarching regulations allow SaaS integrations and follow the guidelines set by the regulators.
 6. Understand what would happen to your data once you no longer use their service.
 
+### 6.	Patch Management
+•	Every device, be it endpoint, server, network device, including log management devices and any third party tools must be patch regularily. In the case of managed services (especially in the cloud) this task has been "transferred" to the cloud service provider but it is always advisable to verify their patching frequency.
+•	Generally, patches are automatically installed by the vendors (unless configured otherwise), though enterprises, to control the risk of a server or device crashing during peak business hours, configure patching to be done during off-peak hours. This could be done via centralised tooling such as BigFix, and vendor centric tools such as SCCM.
+•	Every organisation though must have an emergency patch management strategic, especially in case of zero day attach patches, to immediately patch affected devices. Of course there is a risk that patching may still cause some availability issues but, at ctirical times, this is a small price to pay. 
+
 These are a very high level (overly summarized) set of controls that, at the very minimum must be considered. I will be discussing them in detail in future chapters
 
 Until next time!
@@ -90,3 +95,4 @@ Until next time!
 # Version Control
 24/09/2025 - Initial draft
 08/10/2025 - General controls included
+15/10/2025 - Patch management include
